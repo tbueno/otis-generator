@@ -54,6 +54,7 @@ module Otis
         template(File.join("newgem/rspec.tt"),               File.join(target, ".rspec"),                              opts)
         template(File.join("newgem/spec/spec_helper.rb.tt"), File.join(target, "spec/spec_helper.rb"),                 opts)
         template(File.join("newgem/spec/newgem_spec.rb.tt"), File.join(target, "spec/#{namespaced_path}/#{namespaced_path}_spec.rb"),     opts)
+        template(File.join("newgem/spec/integration/newgem_integration_spec.tt"), File.join(target, "spec/integration/#{namespaced_path}_integration_spec.rb"),     opts)
 
         Dir.chdir(target) { `git init`; `git add .` }
       end

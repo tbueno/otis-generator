@@ -23,6 +23,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "vcr"
   spec.add_development_dependency "webmock"
   spec.add_dependency 'savon', '~> 2.2.0'
-  spec.add_dependency 'virtus'
+  spec.add_dependency 'otis'
 
 end

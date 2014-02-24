@@ -1,14 +1,10 @@
 source 'https://rubygems.org'
 
-#gem "otis", :git => 'git@github.com:tbueno/otis.git'
-gem "otis", :path => '../otis'
-
 group :test do
   gem 'rspec'
   gem 'vcr'
   gem 'webmock'
 end
-
 
 # Specify your gem's dependencies in <%=config[:name]%>.gemspec
 gemspec
