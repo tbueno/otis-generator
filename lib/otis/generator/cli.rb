@@ -38,6 +38,7 @@ module Otis
           :models          => routes.keys,
           :namespaced_path => namespaced_path,
           :constant_name   => constant_name,
+          routes: Otis::Generator::MapPresenter.new(routes),
           :constant_array  => constant_array,
           :author          => git_user_name.empty? ? "TODO: Write your name" : git_user_name,
           :email           => git_user_email.empty? ? "TODO: Write your email address" : git_user_email,
@@ -65,12 +66,6 @@ module Otis
       private
       def generate_soap(name, routes)
         target = File.join(Dir.pwd, name)
-        opts = {
-          name: name,
-          routes: Otis::Generator::MapPresenter.new(routes)
-        }
-        # Generate the map
-        template(File.join("newgem/lib/newgem/map.rb.tt"), File.join(target, "lib/#{name}/map.rb"), opts)
         # Generate the models
         routes.each_pair do |file_name, class_name|
           template(File.join("newgem/lib/newgem/model.rb.tt"), File.join(target, "lib/#{name}/#{file_name.to_s}.rb"), {klass: class_name, name: constantize(name)})
