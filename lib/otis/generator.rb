@@ -1,7 +1,8 @@
 require "otis/generator/version"
+require "thor"
+require 'savon'
 
 module Otis
-  module Generator
-    # Your code goes here...
-  end
+  require 'otis/generator/map_presenter'
+  require 'otis/generator/cli'
 end

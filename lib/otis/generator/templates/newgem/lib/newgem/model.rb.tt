@@ -1,0 +1,4 @@
+module <%= config[:name] %>
+  class <%= config[:klass] %> < Otis::Model
+  end
+end
