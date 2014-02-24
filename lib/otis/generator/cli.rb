@@ -13,19 +13,21 @@ module Otis
       method_option :wsdl, :aliases => "-w", :desc => "Input WSDL to be used as reference"
       option :wsdl
       def generate
+        wsdl = options[:wsdl]
         n = name
         name = n.chomp("/") # remove trailing slash if present
-        unless options[:wsdl]
+        unless wsdl
           puts "You did not provide any WSDL file. Sorry, I can't guess the structure of the webservice without it!"
           puts "Bye."
           exit
         end
-        routes = routes(options[:wsdl])
+        routes = routes(wsdl)
 
         generate_soap(name, routes)
 
         namespaced_path = name.tr('-', '/')
         target = File.join(Dir.pwd, name)
+        create_config(target, wsdl)
 
         constant_name = constantize(name)
         constant_array = constant_name.split('::')
@@ -41,6 +43,7 @@ module Otis
           :email           => git_user_email.empty? ? "TODO: Write your email address" : git_user_email,
           :test            => options[:test]
         }
+
         gemspec_dest = File.join(target, "#{name}.gemspec")
         template(File.join("newgem/Gemfile.tt"),               File.join(target, "Gemfile"),                             opts)
         template(File.join("newgem/Rakefile.tt"),              File.join(target, "Rakefile"),                            opts)
@@ -72,7 +75,12 @@ module Otis
         routes.each_pair do |file_name, class_name|
           template(File.join("newgem/lib/newgem/model.rb.tt"), File.join(target, "lib/#{name}/#{file_name.to_s}.rb"), {klass: class_name, name: constantize(name)})
         end
+      end
 
+      def create_config(target, wsdl)
+        config = File.join(target, 'config')
+        Dir.mkdir(config)
+        FileUtils.cp wsdl, File.join(config, wsdl)
       end
 
       def routes(wsdl)
