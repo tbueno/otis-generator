@@ -2,23 +2,20 @@
 
 This is a gem wrapper generator for [Otis Framework](https://github.com/tbueno/otis).
 
+The current version is able to generate SOAP wrappers based on a input WSDL file.
+
 ## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'otis-generator'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
 
     $ gem install otis-generator
 
 ## Usage
 
-TODO: Write usage instructions here
+In order to generate a gem, you need a WSDL file as input. 
+
+    $ otis generate mygem --wsdl=my_file.wsdl
+
+This command will generate a [Otis](https://github.com/tbueno/otis) wrapper, containing models, mapper and integration test infrastructure.
+
 
 ## Contributing
 
