@@ -4,10 +4,10 @@ require "<%=config[:namespaced_path]%>/version"
 <%= '  '*i %>module <%= c %>
 <%- end -%>
 
-  require'<%=  config[:models] * "'\n  require '" %>'
+  require '<%= config[:namespaced_path] %>/<%=  config[:models] * "'\n  require '#{config[:namespaced_path]}/" %>'
 
   Map = Otis::Map.new(
-    <%= config[:routes] %>
+    <%= config[:routes].map %>
   )
 
 <%= '  '*config[:constant_array].size %># Your code goes here...

@@ -1,11 +1,15 @@
 module Otis
   module Generator
-    class MapPresenter
+    class RoutesPresenter
       def initialize(routes)
         @routes = routes
       end
 
-      def to_s
+      def endpoints
+        @routes.keys
+      end
+
+      def map
         s = ''
         @routes.each_pair { |route, klass| s << ":#{route} => #{klass},\n" }
         s

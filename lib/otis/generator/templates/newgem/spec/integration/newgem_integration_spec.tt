@@ -1,5 +1,17 @@
 require 'spec_helper'
 
 describe 'integration tests' do
+  let(:routes) do
+    <%= constantize(config[:name]) %>::Map
+  end
 
+  let(:client) { Otis::SoapClient.new(routes, "config/<%= config[:wsdl] %>") }
+
+  <%-  config[:routes].endpoints.each do |route| %>
+    describe '<%= route.to_s %>' do
+      it 'does something' do
+        peding
+      end
+    end
+  <%- end %>
 end
