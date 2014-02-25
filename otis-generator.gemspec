@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Otis::Generator::VERSION
   spec.authors       = ["tbueno"]
   spec.email         = ["tbueno@tbueno.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{An Otis Wrapper gem generator}
+  spec.summary       = %q{This is an extension the Otis Framework that adds code generation features}
   spec.homepage      = ""
   spec.license       = "MIT"
 
