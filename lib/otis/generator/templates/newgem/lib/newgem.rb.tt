@@ -1,4 +1,5 @@
 require "<%=config[:namespaced_path]%>/version"
+require "otis"
 
 <%- config[:constant_array].each_with_index do |c,i| -%>
 <%= '  '*i %>module <%= c %>

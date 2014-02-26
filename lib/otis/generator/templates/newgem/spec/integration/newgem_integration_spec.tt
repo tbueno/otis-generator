@@ -10,8 +10,15 @@ describe 'integration tests' do
   <%-  config[:routes].endpoints.each do |route| %>
     describe '<%= route.to_s %>' do
       it 'does something' do
-        peding
+        pending
       end
     end
   <%- end %>
+
+  private
+  def call(method, params)
+    VCR.use_cassette(method) do
+      client.send method, params
+    end
+  end
 end
